@@ -38,6 +38,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "lib_shared_inverter.h"
 #include "lib_util.h"
 
+// NOTE: EnergyPlus: OND_INVERTER branches removed (lib_ondinv not built), see lib_shared_inverter.h
+
 SharedInverter::SharedInverter(int inverterType, size_t numberOfInverters,
     sandia_inverter_t* sandiaInverter, partload_inverter_t* partloadInverter, ond_inverter* ondInverter, double numberOfInvertersClipping)
 {
@@ -54,8 +56,6 @@ SharedInverter::SharedInverter(int inverterType, size_t numberOfInverters,
         m_nameplateAC_kW = m_numInverters * m_sandiaInverter->Paco * util::watt_to_kilowatt;
     else if (m_inverterType == PARTLOAD_INVERTER)
         m_nameplateAC_kW = m_numInverters * m_partloadInverter->Paco * util::watt_to_kilowatt;
-    else if (m_inverterType == OND_INVERTER)
-        m_nameplateAC_kW = m_numInverters * m_ondInverter->PMaxOUT * util::watt_to_kilowatt;
 
     powerDC_kW = 0.;
     powerAC_kW = 0.;
@@ -237,9 +237,6 @@ double SharedInverter::getInverterDCMaxPower(double p_dc_rated)
     else if (m_inverterType == PARTLOAD_INVERTER)
         //m_partloadInverter->acpower(std::fabs(powerDC_Watts) / m_numInverters, &powerAC_Watts, &P_lr, &P_par, &efficiencyAC, &powerClipLoss_kW, &powerNightLoss_kW);
         inv_dc_max_power = m_partloadInverter->Pdco;
-    else if (m_inverterType == OND_INVERTER)
-        //m_ondInverter->acpower(std::fabs(powerDC_Watts) / m_numInverters, DCStringVoltage, tempC, &powerAC_Watts, &P_par, &P_lr, &efficiencyAC, &powerClipLoss_kW, &powerConsumptionLoss_kW, &powerNightLoss_kW, &dcWiringLoss_ond_kW, &acWiringLoss_ond_kW);
-        inv_dc_max_power = m_ondInverter->PMaxDC;
 
     return inv_dc_max_power;
 }
@@ -271,8 +268,6 @@ void SharedInverter::calculateACPower(const double powerDC_kW_in, const double D
         m_sandiaInverter->acpower(std::abs(powerDC_Watts) / m_numInverters, DCStringVoltage, &powerAC_Watts, &P_par, &P_lr, &efficiencyAC, &powerClipLoss_kW, &powerConsumptionLoss_kW, &powerNightLoss_kW);
     else if (m_inverterType == PARTLOAD_INVERTER)
         m_partloadInverter->acpower(std::abs(powerDC_Watts) / m_numInverters, &powerAC_Watts, &P_lr, &P_par, &efficiencyAC, &powerClipLoss_kW, &powerNightLoss_kW);
-    else if (m_inverterType == OND_INVERTER)
-        m_ondInverter->acpower(std::abs(powerDC_Watts) / m_numInverters, DCStringVoltage, tempC, &powerAC_Watts, &P_par, &P_lr, &efficiencyAC, &powerClipLoss_kW, &powerConsumptionLoss_kW, &powerNightLoss_kW, &dcWiringLoss_ond_kW, &acWiringLoss_ond_kW);
     else if (m_inverterType == NONE) {
         powerClipLoss_kW = 0.;
         powerConsumptionLoss_kW = 0.;
@@ -319,8 +314,6 @@ void SharedInverter::calculateACPower(const double powerDC_kW_in, const double D
         m_sandiaInverter->acpower(std::abs(powerDC_Watts) / m_numInvertersClipping, DCStringVoltage, &powerAC_Watts_clipping, &P_par_clipping, &P_lr, &efficiencyAC_clipping, &powerClipLoss_kW_clipping, &powerConsumptionLoss_kW_clipping, &powerNightLoss_kW_clipping);
     else if (m_inverterType == PARTLOAD_INVERTER)
         m_partloadInverter->acpower(std::abs(powerDC_Watts) / m_numInvertersClipping, &powerAC_Watts_clipping, &P_lr, &P_par_clipping, &efficiencyAC_clipping, &powerClipLoss_kW_clipping, &powerConsumptionLoss_kW_clipping);
-    else if (m_inverterType == OND_INVERTER)
-        m_ondInverter->acpower(std::abs(powerDC_Watts) / m_numInvertersClipping, DCStringVoltage, tempC, &powerAC_Watts_clipping, &P_par_clipping, &P_lr, &efficiencyAC_clipping, &powerClipLoss_kW_clipping, &powerConsumptionLoss_kW_clipping, &powerNightLoss_kW_clipping, &dcWiringLoss_ond_kW_clipping, &acWiringLoss_ond_kW_clipping);
     else if (m_inverterType == NONE) {
         powerClipLoss_kW = 0.;
         powerConsumptionLoss_kW = 0.;
@@ -423,8 +416,6 @@ double SharedInverter::getInverterDCNominalVoltage()
         return m_sandiaInverter->Vdco;
     else if (m_inverterType == PARTLOAD_INVERTER)
         return m_partloadInverter->Vdco;
-    else if (m_inverterType == OND_INVERTER)
-        return m_ondInverter->VNomEff[1];
     else
         return 0.;
 }
@@ -451,8 +442,6 @@ double SharedInverter::getMaxPowerEfficiency()
         calculateACPower(m_sandiaInverter->Paco * util::watt_to_kilowatt * m_numInverters, m_sandiaInverter->Vdco, 0.0);
     else if (m_inverterType == PARTLOAD_INVERTER)
         calculateACPower(m_partloadInverter->Paco * util::watt_to_kilowatt * m_numInverters, m_partloadInverter->Vdco, 0.0);
-    else if (m_inverterType == OND_INVERTER)
-        calculateACPower(m_ondInverter->PMaxOUT * util::watt_to_kilowatt * m_numInverters, m_ondInverter->VAbsMax, 0.0);
 
     return efficiencyAC;
 }

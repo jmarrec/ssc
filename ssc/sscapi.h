@@ -288,18 +288,7 @@ SSCEXPORT ssc_bool_t ssc_data_deep_copy(ssc_data_t source, ssc_data_t dest);
 
 /**@}*/
 
-
-/** RapidJSON and ssc_data_t conversion functions
- *
- * Numerical json values (int, bool, real) map to SSC_NUMBER type.
- * Json strings map to SSC_STRING type.
- * Json arrays map to SSC_ARRAY, SSC_MATRIX, or SSC_DATARR type.
- * Json objects map to SSC_TABLE type
- */
-SSCEXPORT ssc_data_t json_to_ssc_data(const char* json_str);
-SSCEXPORT ssc_data_t json_file_to_ssc_data(const char* json_fn);
-
-SSCEXPORT const char* ssc_data_to_json(ssc_data_t p_data);
+// NOTE: EnergyPlus: json_to_ssc_data / json_file_to_ssc_data / ssc_data_to_json removed (see sscapi.cpp)
 
 
 
