@@ -56,7 +56,6 @@
 #include "core.h"
 #include "sscapi.h"
 
-#include <json/json.h>
 
 #pragma warning (disable : 4706 )
 
@@ -78,196 +77,196 @@ SSCEXPORT const char *ssc_build_info()
 
 extern module_entry_info
 /* extern declarations of modules for linking */
-	cm_entry_singlediode,
-	cm_entry_singlediodeparams,
-	cm_entry_iec61853par,
-	cm_entry_iec61853interp,
-	cm_entry_6parsolve,
-	cm_entry_pvsamv1,
-	cm_entry_pvwattsv0,
-	cm_entry_pvwattsv1,
-	cm_entry_pvwattsv1_1ts,
-	cm_entry_pvwattsv1_poa,
-	cm_entry_pvwattsv5,
-	cm_entry_pvwattsv7,
-	cm_entry_pvwattsv5_1ts,
-	cm_entry_pv6parmod,
-	cm_entry_pvsandiainv,
-	cm_entry_wfreader,
-	cm_entry_irradproc,
-	cm_entry_utilityrate,
-	cm_entry_utilityrate2,
-	cm_entry_utilityrate3,
-	cm_entry_utilityrate4,
-	cm_entry_utilityrate5,
-	cm_entry_annualoutput,
-	cm_entry_cashloan,
-	cm_entry_thirdpartyownership,
-	cm_entry_ippppa,
-	cm_entry_timeseq,
-	cm_entry_levpartflip,
-	cm_entry_equpartflip,
-	cm_entry_saleleaseback,
-	cm_entry_singleowner,
-	cm_entry_merchantplant,
-	cm_entry_host_developer,
-	cm_entry_swh,
-	cm_entry_geothermal,
-	cm_entry_geothermal_costs,
-	cm_entry_windpower,
-	cm_entry_poacalib,
-	cm_entry_snowmodel,
-	cm_entry_generic_system,
-	cm_entry_wfcsvconv,
-	cm_entry_tcstrough_empirical,
-	cm_entry_tcstrough_physical,
-	cm_entry_trough_physical,
-	cm_entry_trough_physical_csp_solver,
-	cm_entry_trough_physical_process_heat,
-	cm_entry_iph_to_lcoefcr,
-	cm_entry_tcsgeneric_solar,
-	cm_entry_tcsmolten_salt,
-	cm_entry_tcsdirect_steam,
-	cm_entry_tcslinear_fresnel,
-	cm_entry_linear_fresnel_dsg_iph,
-	cm_entry_tcsdish,
-	cm_entry_tcsiscc,
-	cm_entry_tcsmslf,
-	cm_entry_hcpv,
-	cm_entry_wfcheck,
-	cm_entry_wind_file_reader,
-	cm_entry_windbos,
-	cm_entry_wind_obos,
-	cm_entry_windcsm,
-	cm_entry_wind_landbosse,
-	cm_entry_biomass,
-	cm_entry_solarpilot,
-	cm_entry_belpe,
-	cm_entry_dsg_flux_preprocess,
-	cm_entry_layoutarea,
-	cm_entry_sco2_design_point,
-	cm_entry_sco2_design_cycle,
-	cm_entry_sco2_csp_system,
-	cm_entry_sco2_csp_ud_pc_tables,
-	cm_entry_sco2_air_cooler,
-    cm_entry_sco2_comp_curves,
-	cm_entry_user_htf_comparison,
-	cm_entry_ui_tes_calcs,
-    cm_entry_ui_udpc_checks,
-	cm_entry_cb_mspt_system_costs,
-	cm_entry_cb_construction_financing,
-	cm_entry_cb_empirical_hce_heat_loss,
-	cm_entry_iscc_design_point,
-	cm_entry_battery,
-	cm_entry_battwatts,
-	cm_entry_fuelcell,
-   	cm_entry_lcoefcr,
-	cm_entry_pv_get_shade_loss_mpp,
-	cm_entry_inv_cec_cg,
-	cm_entry_thermalrate,
-	cm_entry_mhk_tidal,
-	cm_entry_mhk_wave,
-	cm_entry_mhk_costs,
-	cm_entry_wave_file_reader,
-	cm_entry_grid,
-	cm_entry_battery_stateful
+//	cm_entry_singlediode,
+//	cm_entry_singlediodeparams,
+//	cm_entry_iec61853par,
+//	cm_entry_iec61853interp,
+//	cm_entry_6parsolve,
+//	cm_entry_pvsamv1,
+//	cm_entry_pvwattsv0,
+//	cm_entry_pvwattsv1,
+//	cm_entry_pvwattsv1_1ts,
+//	cm_entry_pvwattsv1_poa,
+//	cm_entry_pvwattsv5,
+//	cm_entry_pvwattsv7,
+	cm_entry_pvwattsv5_1ts
+//	cm_entry_pv6parmod,
+//	cm_entry_pvsandiainv,
+//	cm_entry_wfreader,
+//	cm_entry_irradproc,
+//	cm_entry_utilityrate,
+//	cm_entry_utilityrate2,
+//	cm_entry_utilityrate3,
+//	cm_entry_utilityrate4,
+//	cm_entry_utilityrate5,
+//	cm_entry_annualoutput,
+//	cm_entry_cashloan,
+//	cm_entry_thirdpartyownership,
+//	cm_entry_ippppa,
+//	cm_entry_timeseq,
+//	cm_entry_levpartflip,
+//	cm_entry_equpartflip,
+//	cm_entry_saleleaseback,
+//	cm_entry_singleowner,
+//	cm_entry_merchantplant,
+//	cm_entry_host_developer,
+//	cm_entry_swh,
+//	cm_entry_geothermal,
+//	cm_entry_geothermal_costs,
+//	cm_entry_windpower,
+//	cm_entry_poacalib,
+//	cm_entry_snowmodel,
+//	cm_entry_generic_system,
+//	cm_entry_wfcsvconv,
+//	cm_entry_tcstrough_empirical,
+//	cm_entry_tcstrough_physical,
+//	cm_entry_trough_physical,
+//	cm_entry_trough_physical_csp_solver,
+//	cm_entry_trough_physical_process_heat,
+//	cm_entry_iph_to_lcoefcr,
+//	cm_entry_tcsgeneric_solar,
+//	cm_entry_tcsmolten_salt,
+//	cm_entry_tcsdirect_steam,
+//	cm_entry_tcslinear_fresnel,
+//	cm_entry_linear_fresnel_dsg_iph,
+//	cm_entry_tcsdish,
+//	cm_entry_tcsiscc,
+//	cm_entry_tcsmslf,
+//	cm_entry_hcpv,
+//	cm_entry_wfcheck,
+//	cm_entry_wind_file_reader,
+//	cm_entry_windbos,
+//	cm_entry_wind_obos,
+//	cm_entry_windcsm,
+//	cm_entry_wind_landbosse,
+//	cm_entry_biomass,
+//	cm_entry_solarpilot,
+//	cm_entry_belpe,
+//	cm_entry_dsg_flux_preprocess,
+//	cm_entry_layoutarea,
+//	cm_entry_sco2_design_point,
+//	cm_entry_sco2_design_cycle,
+//	cm_entry_sco2_csp_system,
+//	cm_entry_sco2_csp_ud_pc_tables,
+//	cm_entry_sco2_air_cooler,
+//    cm_entry_sco2_comp_curves,
+//	cm_entry_user_htf_comparison,
+//	cm_entry_ui_tes_calcs,
+//    cm_entry_ui_udpc_checks,
+//	cm_entry_cb_mspt_system_costs,
+//	cm_entry_cb_construction_financing,
+//	cm_entry_cb_empirical_hce_heat_loss,
+//	cm_entry_iscc_design_point,
+//	cm_entry_battery,
+//	cm_entry_battwatts,
+//	cm_entry_fuelcell,
+//   	cm_entry_lcoefcr,
+//	cm_entry_pv_get_shade_loss_mpp,
+//	cm_entry_inv_cec_cg,
+//	cm_entry_thermalrate,
+//	cm_entry_mhk_tidal,
+//	cm_entry_mhk_wave,
+//	cm_entry_mhk_costs,
+//	cm_entry_wave_file_reader,
+//	cm_entry_grid,
+//	cm_entry_battery_stateful
 	;
 
 /* official module table */
 static module_entry_info *module_table[] = {
-	&cm_entry_singlediode,
-	&cm_entry_singlediodeparams,
-	&cm_entry_iec61853par,
-	&cm_entry_iec61853interp,
-	&cm_entry_6parsolve,
-	&cm_entry_pv6parmod,
-	&cm_entry_pvsamv1,
-	//&cm_entry_pvwattsv0,
-	&cm_entry_pvwattsv1,
-	&cm_entry_pvwattsv1_1ts,
-	&cm_entry_pvwattsv1_poa,
-	&cm_entry_pvwattsv5,
-	&cm_entry_pvwattsv7,
+//	&cm_entry_singlediode,
+//	&cm_entry_singlediodeparams,
+//	&cm_entry_iec61853par,
+//	&cm_entry_iec61853interp,
+//	&cm_entry_6parsolve,
+//	&cm_entry_pv6parmod,
+//	&cm_entry_pvsamv1,
+//	//&cm_entry_pvwattsv0,
+//	&cm_entry_pvwattsv1,
+//	&cm_entry_pvwattsv1_1ts,
+//	&cm_entry_pvwattsv1_poa,
+//	&cm_entry_pvwattsv5,
+//	&cm_entry_pvwattsv7,
 	&cm_entry_pvwattsv5_1ts,
-	&cm_entry_pvsandiainv,
-	&cm_entry_wfreader,
-	&cm_entry_irradproc,
-	&cm_entry_utilityrate,
-	&cm_entry_utilityrate2,
-	&cm_entry_utilityrate3,
-	&cm_entry_utilityrate4,
-	&cm_entry_utilityrate5,
-	&cm_entry_annualoutput,
-	&cm_entry_cashloan,
-	&cm_entry_thirdpartyownership,
-	&cm_entry_ippppa,
-	&cm_entry_timeseq,
-	&cm_entry_levpartflip,
-	&cm_entry_equpartflip,
-	&cm_entry_saleleaseback,
-	&cm_entry_singleowner,
-	&cm_entry_merchantplant,
-	&cm_entry_host_developer,
-	&cm_entry_swh,
-	&cm_entry_geothermal,
-	&cm_entry_geothermal_costs,
-	&cm_entry_windpower,
-	&cm_entry_poacalib,
-	&cm_entry_snowmodel,
-	&cm_entry_generic_system,
-	&cm_entry_wfcsvconv,
-	&cm_entry_tcstrough_empirical,
-	&cm_entry_tcstrough_physical,
-    &cm_entry_trough_physical,
-	&cm_entry_trough_physical_csp_solver,
-	&cm_entry_trough_physical_process_heat,
-	&cm_entry_iph_to_lcoefcr,
-	&cm_entry_tcsgeneric_solar,
-	&cm_entry_tcsmolten_salt,
-	&cm_entry_tcsdirect_steam,
-	&cm_entry_tcslinear_fresnel,
-	&cm_entry_linear_fresnel_dsg_iph,
-	&cm_entry_tcsdish,
-	&cm_entry_tcsiscc,
-	&cm_entry_tcsmslf,
-	&cm_entry_hcpv,
-	&cm_entry_wind_file_reader,
-	&cm_entry_wfcheck,
-	&cm_entry_windbos,
-	&cm_entry_wind_obos,
-	&cm_entry_windcsm,
-	&cm_entry_wind_landbosse,
-	&cm_entry_biomass,
-	&cm_entry_solarpilot,
-	&cm_entry_belpe,
-	&cm_entry_dsg_flux_preprocess,
-	&cm_entry_layoutarea,
-	&cm_entry_sco2_design_point,
-	&cm_entry_sco2_design_cycle,
-	&cm_entry_sco2_csp_system,
-	&cm_entry_sco2_csp_ud_pc_tables,
-	&cm_entry_sco2_air_cooler,
-    &cm_entry_sco2_comp_curves,
-	&cm_entry_user_htf_comparison,
-	&cm_entry_ui_tes_calcs,
-    &cm_entry_ui_udpc_checks,
-	&cm_entry_cb_mspt_system_costs,
-	&cm_entry_cb_construction_financing,
-	&cm_entry_cb_empirical_hce_heat_loss,
-	&cm_entry_iscc_design_point,
-	&cm_entry_battery,
-	&cm_entry_battwatts,
-	&cm_entry_fuelcell,
-	&cm_entry_lcoefcr,
-	&cm_entry_pv_get_shade_loss_mpp,
-	&cm_entry_inv_cec_cg,
-	&cm_entry_thermalrate,
-	&cm_entry_mhk_tidal,
-	&cm_entry_mhk_wave,
-	&cm_entry_mhk_costs,
-	&cm_entry_wave_file_reader,
-	&cm_entry_grid,
-	&cm_entry_battery_stateful,
+//	&cm_entry_pvsandiainv,
+//	&cm_entry_wfreader,
+//	&cm_entry_irradproc,
+//	&cm_entry_utilityrate,
+//	&cm_entry_utilityrate2,
+//	&cm_entry_utilityrate3,
+//	&cm_entry_utilityrate4,
+//	&cm_entry_utilityrate5,
+//	&cm_entry_annualoutput,
+//	&cm_entry_cashloan,
+//	&cm_entry_thirdpartyownership,
+//	&cm_entry_ippppa,
+//	&cm_entry_timeseq,
+//	&cm_entry_levpartflip,
+//	&cm_entry_equpartflip,
+//	&cm_entry_saleleaseback,
+//	&cm_entry_singleowner,
+//	&cm_entry_merchantplant,
+//	&cm_entry_host_developer,
+//	&cm_entry_swh,
+//	&cm_entry_geothermal,
+//	&cm_entry_geothermal_costs,
+//	&cm_entry_windpower,
+//	&cm_entry_poacalib,
+//	&cm_entry_snowmodel,
+//	&cm_entry_generic_system,
+//	&cm_entry_wfcsvconv,
+//	&cm_entry_tcstrough_empirical,
+//	&cm_entry_tcstrough_physical,
+//    &cm_entry_trough_physical,
+//	&cm_entry_trough_physical_csp_solver,
+//	&cm_entry_trough_physical_process_heat,
+//	&cm_entry_iph_to_lcoefcr,
+//	&cm_entry_tcsgeneric_solar,
+//	&cm_entry_tcsmolten_salt,
+//	&cm_entry_tcsdirect_steam,
+//	&cm_entry_tcslinear_fresnel,
+//	&cm_entry_linear_fresnel_dsg_iph,
+//	&cm_entry_tcsdish,
+//	&cm_entry_tcsiscc,
+//	&cm_entry_tcsmslf,
+//	&cm_entry_hcpv,
+//	&cm_entry_wind_file_reader,
+//	&cm_entry_wfcheck,
+//	&cm_entry_windbos,
+//	&cm_entry_wind_obos,
+//	&cm_entry_windcsm,
+//	&cm_entry_wind_landbosse,
+//	&cm_entry_biomass,
+//	&cm_entry_solarpilot,
+//	&cm_entry_belpe,
+//	&cm_entry_dsg_flux_preprocess,
+//	&cm_entry_layoutarea,
+//	&cm_entry_sco2_design_point,
+//	&cm_entry_sco2_design_cycle,
+//	&cm_entry_sco2_csp_system,
+//	&cm_entry_sco2_csp_ud_pc_tables,
+//	&cm_entry_sco2_air_cooler,
+//    &cm_entry_sco2_comp_curves,
+//	&cm_entry_user_htf_comparison,
+//	&cm_entry_ui_tes_calcs,
+//    &cm_entry_ui_udpc_checks,
+//	&cm_entry_cb_mspt_system_costs,
+//	&cm_entry_cb_construction_financing,
+//	&cm_entry_cb_empirical_hce_heat_loss,
+//	&cm_entry_iscc_design_point,
+//	&cm_entry_battery,
+//	&cm_entry_battwatts,
+//	&cm_entry_fuelcell,
+//	&cm_entry_lcoefcr,
+//	&cm_entry_pv_get_shade_loss_mpp,
+//	&cm_entry_inv_cec_cg,
+//	&cm_entry_thermalrate,
+//	&cm_entry_mhk_tidal,
+//	&cm_entry_mhk_wave,
+//	&cm_entry_mhk_costs,
+//	&cm_entry_wave_file_reader,
+//	&cm_entry_grid,
+//	&cm_entry_battery_stateful,
 	0 };
 
 SSCEXPORT ssc_module_t ssc_module_create( const char *name )
@@ -702,182 +701,7 @@ SSCEXPORT ssc_var_t ssc_data_get_data_matrix(ssc_data_t p_data, const char *name
     return dat;
 }
 
-void json_to_ssc_var(const Json::Value& json_val, ssc_var_t ssc_val){
-    if (!ssc_val)
-        return;
-    auto vd = static_cast<var_data*>(ssc_val);
-    vd->clear();
-
-    using namespace Json;
-    Json::Value::Members members;
-    bool is_arr, is_mat;
-    std::vector<ssc_number_t> vec;
-    std::vector<var_data>* vd_arr;
-    var_table* vd_tab;
-
-    auto is_numerical = [](const Json::Value& json_val){
-        bool is_num = true;
-        for (const auto & value : json_val){
-            if (!value.isDouble() && !value.isBool()){
-                is_num = false;
-                break;
-            }
-        }
-        return is_num;
-    };
-
-    switch (json_val.type()){
-        default:
-        case ValueType::nullValue:
-            return;
-        case ValueType::intValue:
-        case ValueType::uintValue:
-        case ValueType::booleanValue:
-        case ValueType::realValue:
-            vd->type = SSC_NUMBER;
-            vd->num[0] = json_val.asDouble();
-            return;
-        case ValueType::stringValue:
-            vd->type = SSC_STRING;
-            vd->str = json_val.asString();
-            return;
-        case ValueType::arrayValue:
-            // determine if SSC_ARRAY
-            is_arr = is_numerical(json_val);
-            if (is_arr){
-                vd->type = SSC_ARRAY;
-				if (json_val.empty())
-					return;
-                for (const auto & row : json_val){
-                    vec.push_back(row.asDouble());
-                }
-                vd->num.assign(&vec[0], vec.size());
-                return;
-            }
-            // SSC_MATRIX
-            is_mat = true;
-            for (const auto & value : json_val){
-                if (value.type() != ValueType::arrayValue || !is_numerical(value)){
-                    is_mat = false;
-                    break;
-                }
-            }
-            if (is_mat){
-                vd->type = SSC_MATRIX;
-				if (json_val.empty())
-					return;
-                for (const auto & row : json_val){
-                    for (const auto & value : row){
-                        vec.push_back(value.asDouble());
-                    }
-                }
-                vd->num.assign(&vec[0], json_val.size(), json_val[0].size());
-                return;
-            }
-            // SSC_DATARR
-            vd_arr = &vd->vec;
-            for (const auto & value : json_val){
-                vd_arr->emplace_back(var_data());
-                auto entry = &vd_arr->back();
-                json_to_ssc_var(value, entry);
-            }
-            vd->type = SSC_DATARR;
-            return;
-        case ValueType::objectValue:
-            vd_tab = &vd->table;
-            members = json_val.getMemberNames();
-            for (auto const &name : members) {
-                auto entry = vd_tab->assign(name, var_data());
-                json_to_ssc_var(json_val[name], entry);
-            }
-            vd->type = SSC_TABLE;
-    }
-}
-
-SSCEXPORT ssc_data_t json_to_ssc_data(const char* json_str){
-    auto vt = new var_table;
-    const std::string rawJson(json_str);
-    const auto rawJsonLength = static_cast<int>(rawJson.length());
-    JSONCPP_STRING err;
-    Json::Value root;
-    Json::CharReaderBuilder builder;
-    const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
-    if (!reader->parse(rawJson.c_str(), rawJson.c_str() + rawJsonLength, &root,
-                       &err)) {
-        vt->assign("error", err);
-        return dynamic_cast<ssc_data_t>(vt);
-    }
-
-    Json::Value::Members members = root.getMemberNames();
-    for (auto const &name : members) {
-        var_data ssc_val;
-        json_to_ssc_var(root[name], &ssc_val);
-        vt->assign(name, ssc_val);
-    }
-    return vt;
-}
-
-Json::Value ssc_var_to_json(var_data* vd){
-    Json::Value json_val;
-    switch (vd->type){
-        default:
-        case SSC_INVALID:
-            return json_val;
-        case SSC_NUMBER:
-            json_val = vd->num[0];
-            return json_val;
-        case SSC_STRING:
-            json_val = vd->str;
-            return json_val;
-        case SSC_ARRAY:
-            for (Json::ArrayIndex i = 0; i < vd->num.ncols(); i++){
-                json_val.append(Json::Value(vd->num[i]));
-            }
-            return json_val;
-        case SSC_MATRIX:
-            json_val.resize((Json::ArrayIndex)vd->num.nrows());
-            for (Json::ArrayIndex i = 0; i < json_val.size(); i++){
-                for (Json::ArrayIndex j = 0; j < vd->num.ncols(); j++){
-                    json_val[i].append(vd->num.at(i, j));
-                }
-            }
-            return json_val;
-        case SSC_DATARR:
-            for (auto& dat : vd->vec){
-                json_val.append(ssc_var_to_json(&dat));
-            }
-            return json_val;
-        case SSC_DATMAT:
-            for (auto& row : vd->mat){
-                auto& json_row = json_val.append(Json::Value(Json::ValueType::arrayValue));
-                for (auto& dat : row){
-                    json_row.append(ssc_var_to_json(&dat));
-                }
-            }
-            return json_val;
-        case SSC_TABLE:
-            for (auto const &it : *vd->table.get_hash()){
-                json_val[it.first] = ssc_var_to_json(it.second);
-            }
-            return json_val;
-    }
-}
-
-SSCEXPORT const char* ssc_data_to_json(ssc_data_t p_data){
-    auto vt = static_cast<var_table*>(p_data);
-    if (!vt) return nullptr;
-
-    Json::Value root;
-    for (auto const &it : *vt->get_hash()){
-        root[it.first] = ssc_var_to_json(it.second);
-    }
-    Json::StreamWriterBuilder builder;
-    builder.settings_["indentation"] = "";
-    const std::string json_file = Json::writeString(builder, root);
-    char *arr = (char*)malloc(strlen(json_file.c_str()) + 1);;
-    strcpy(arr, json_file.c_str());
-    return arr;
-}
+// NOTE: EnergyPlus: json_to_ssc_data / ssc_data_to_json (and their helpers) removed. Not used by E+, they were the only reason jsoncpp was built and linked
 
 
 SSCEXPORT ssc_entry_t ssc_module_entry( int index )
@@ -908,7 +732,7 @@ SSCEXPORT int ssc_entry_version( ssc_entry_t p_entry )
 }
 
 
-SSCEXPORT const ssc_info_t ssc_module_var_info( ssc_module_t p_mod, int index )
+SSCEXPORT ssc_info_t ssc_module_var_info( ssc_module_t p_mod, int index )
 {
 	compute_module *cm = static_cast<compute_module*>(p_mod);
 	if (!cm) return 0;

@@ -436,7 +436,11 @@ battery_t::battery_t(double dt_hr, int chem, capacity_t *capacity_model, voltage
     voltage = std::unique_ptr<voltage_t>(voltage_model);
     lifetime = std::unique_ptr<lifetime_t>(lifetime_model);
     thermal = std::unique_ptr<thermal_t>(thermal_model);
-    losses = std::unique_ptr<losses_t>(losses_model);
+    if (losses_model == nullptr) {
+        losses = std::unique_ptr<losses_t>(new losses_t());
+    } else {
+        losses = std::unique_ptr<losses_t>(losses_model);
+    }
 
     state = std::make_shared<battery_state>(capacity->state, voltage->state, thermal->state, lifetime->state, losses->state);
     params = std::make_shared<battery_params>(capacity->params, voltage->params, thermal->params, lifetime->params, losses->params);
@@ -549,11 +553,12 @@ void battery_t::ChangeTimestep(double dt_hr) {
 
     auto old_hr = (double)state->last_idx * params->dt_hr;
     state->last_idx = (size_t)(old_hr / dt_hr);
+    /*
     if (fabs(old_hr / dt_hr - state->last_idx) > 1e-7)
         throw std::runtime_error("battery_t dt_hr step size can only be changed to a higher step size when the current time step"
                                  " is at a time step common to both the previous and new step size. For instance, if running"
                                  " 30-min steps, step size can only be increased to 60-min step at the hour.");
-
+    */
     params->dt_hr = dt_hr;
     params->capacity->dt_hr = dt_hr;
     params->voltage->dt_hr = dt_hr;
@@ -767,8 +772,10 @@ battery_state battery_t::get_state() { return *state; }
 
 battery_params battery_t::get_params() { return *params; }
 
-void battery_t::set_state(const battery_state& tmp_state) {
+void battery_t::set_state(const battery_state& tmp_state, double dt_hr) {
     *state = tmp_state;
+    if (dt_hr > 0 && dt_hr <= 1)
+        params->dt_hr = dt_hr;
 }
 
 void battery_t::update_state(double I) {

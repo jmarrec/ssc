@@ -274,16 +274,7 @@ SSCEXPORT ssc_var_t ssc_data_get_data_matrix(ssc_data_t p_data, const char *name
 
 /**@}*/
 
-/** Json and ssc_data_t conversion functions
- *
- * Numerical json values (int, bool, real) map to SSC_NUMBER type.
- * Json strings map to SSC_STRING type.
- * Json arrays map to SSC_ARRAY, SSC_MATRIX, or SSC_DATARR type.
- * Json objects map to SSC_TABLE type
- */
-SSCEXPORT ssc_data_t json_to_ssc_data(const char* json_str);
-
-SSCEXPORT const char* ssc_data_to_json(ssc_data_t p_data);
+// NOTE: EnergyPlus: json_to_ssc_data / ssc_data_to_json removed (see sscapi.cpp)
 
 /** The opaque data structure that stores information about a compute module. */
 typedef void* ssc_entry_t;
@@ -349,7 +340,7 @@ SSCEXPORT void ssc_module_free( ssc_module_t p_mod );
 	}
 	\endverbatim
 */
-SSCEXPORT const ssc_info_t ssc_module_var_info( ssc_module_t p_mod, int index );
+SSCEXPORT ssc_info_t ssc_module_var_info( ssc_module_t p_mod, int index );
 
 /** Returns variable type information: SSC_INPUT, SSC_OUTPUT, or SSC_INOUT */
 SSCEXPORT int ssc_info_var_type( ssc_info_t p_inf );
